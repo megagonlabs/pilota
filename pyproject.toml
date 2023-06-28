@@ -12,7 +12,7 @@ sentencepiece = ">=0.1.95"
 pydantic = ">=1.8.2"
 bunkai = ">=1.5.5"
 asdc = {git = "https://github.com/megagonlabs/asdc", rev = "v4.8.2"}
-protobuf = ">=3.20.2,<4" # To fix CVE-2022-1941
+protobuf = ">=3.20.2,<5" # To fix CVE-2022-1941
 fugashi = "^1.2.1" # for LINE-DistilBERT-Japanese
 unidic-lite = "^1.0.8" # for LINE-DistilBERT-Japanese
 torch = ">=2.0.0, !=2.0.1" # https://github.com/pytorch/pytorch/issues/100974
