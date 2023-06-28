@@ -9,6 +9,12 @@
 [![jsonlint](https://img.shields.io/badge/json-lint-lightgrey)](https://github.com/dmeranda/demjson)
 [![yamllint](https://img.shields.io/badge/yaml-lint-lightgrey)](https://github.com/adrienverge/yamllint)
 
+| Name | Utterance | SCUD |
+| --- | --- | --- |
+| Agent | ご要望をお知らせください | - |
+| User | はい。 | (none) |
+| | 部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。 | 部屋から富士山が見るホテルが良い。<br>夜景を見ながら食事のできるホテルが良い。|
+
 ## Quick start
 
 ### Install
@@ -29,7 +35,8 @@ pip install -U torch --extra-index-url https://download.pytorch.org/whl/cu118
 Prepare inputs.
 
 ```console
-$ echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tはい、こんにちは' | python -m pilota.convert.plain2request | tee input.jsonl
+$ echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tはい、こんにちは' \
+    | python -m pilota.convert.plain2request | tee input.jsonl
 {"context": [{"name": "agent", "text": "ご要望をお知らせください"}], "utterance": "はい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。", "sentences": null, "meta": {}}
 {"context": [{"name": "agent", "text": "こんにちは"}], "utterance": "はい、こんにちは", "sentences": null, "meta": {}}
 ```
@@ -71,3 +78,7 @@ Check other options by ``pilota -h``.
     要約付き宿検索対話コーパス．
     言語処理学会第27回年次大会論文集，pp.340-344. 2021. (NLP 2021)
     [[PDF]](https://www.anlp.jp/proceedings/annual_meeting/2021/pdf_dir/P2-5.pdf)
+
+## License
+
+Apache License 2.0
