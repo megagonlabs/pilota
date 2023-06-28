@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="static/loader.css">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" integrity="sha384-eoTu3+HydHRBIjnCVwsFyCpUDZHZSFKEJD0mc3ZqSBSb6YhZzRHeiomAUWCstIWo" crossorigin="anonymous">
+
+    <title>Pilota</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <div id="app" class="container" data-appname="pilota">
+        <div class="row">
+            <div class="col-6">
+                <h1 id="title"><a href="./">Pilota</a></h1>
+            </div>
+
+            <div id="info_message" class="alert alert-info col-6" style="visibility:hidden;"></div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: inherit; width: 98%; margin-left: 15px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Context Template</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="context_candidates">
+                    </div>
+                    <div class="modal-footer">
+                        <div class="input-group">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="exampleModalClose">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row" v-show="use_context">
+            <div class="col-12">
+                <div class="input-group">
+                    <div class="input-group-text wem">
+                        <div style="display:block;">
+                            Context
+                            <div>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="bi bi-bank"></span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <textarea name="query_context" v-model="query_context" class="form-control input-lg" @keydown.enter.exact="keyDownEnter" @keyup.enter.exact="keyUpEnter" @keydown.enter.shift="keyEnterShift" rows="5" placeholder="Shift + Enter => Line break, // => Separator"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-12">
+                <div class="input-group">
+                    <span class="input-group-text wem">User</span>
+                    <textarea name="query_user" v-model="query_user" class="form-control input-lg" @keydown.enter.exact="keyDownEnter" @keyup.enter.exact="keyUpEnter" @keydown.enter.shift="keyEnterShift" rows="5" placeholder="Shift + Enter => Line break"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">Out</span>
+                    <input name="query_param_out_max_length" v-model.number="query_param_out_max_length" type="number" min="1" class="form-control" step="1" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">Beam</span>
+                    <input name="query_param_beam_search" v-model.number="query_param_beam_search" type="number" min="1" class="form-control" step="1" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">Nbest</span>
+                    <input name="query_param_nbest" v-model.number="query_param_nbest" type="number" min="1" class="form-control" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">Repetition P</span>
+                    <input name="query_param_repetition_penalty" v-model.number="query_param_repetition_penalty" type="number" min="0.000001" class="form-control" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">length P</span>
+                    <input name="query_param_length_penalty" v-model.number="query_param_length_penalty" type="number" class="form-control" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">temperature</span>
+                    <input name="query_param_temperature" v-model.number="query_param_temperature" type="number" class="form-control" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">In</span>
+                    <input name="query_param_in_max_length" v-model.number="query_param_in_max_length" type="number" min="0" class="form-control" step="1" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">Diversity P</span>
+                    <input name="query_param_diversity_penalty" v-model.number="query_param_diversity_penalty" type="number" class="form-control" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">Beam G</span>
+                    <input name="query_param_num_beam_groups" v-model.number="query_param_num_beam_groups" type="number" class="form-control" step="1" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">top_k</span>
+                    <input name="query_param_top_k" v-model.number="query_param_top_k" type="number" min="1" class="form-control" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">top_p</span>
+                    <input name="query_param_top_p" v-model.number="query_param_top_p" type="number" min="0.0" max="1.0" class="form-control" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="input-group">
+                    <span class="input-group-text">typical_p</span>
+                    <input name="query_param_typical_p" v-model.number="query_param_typical_p" type="number" min="0.0" max="1.0" class="form-control" @keyup.enter.exact="keyUpEnter">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="mb-3 row">
+            <div class="col-2">
+                <div class="form-check">
+                    <input type="checkbox" id="query_param_rerank" v-model="query_param_rerank" class="form-check-input">
+                    <label class="form-check-label" for="query_param_rerank">Re-ranking</label>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-check">
+                    <input type="checkbox" id="query_param_force_none_lowrank" v-model="query_param_force_none_lowrank" class="form-check-input">
+                    <label class="form-check-label" for="query_param_force_none_lowrank">force_none_lowrank</label>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-check">
+                    <input type="checkbox" id="query_param_early_stopping" v-model="query_param_early_stopping" class="form-check-input">
+                    <label class="form-check-label" for="query_param_early_stopping">early_stopping</label>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="input-group">
+                    <span class="input-group-text">Model</span>
+                    <select id="query_model_name" name="query_model_name" v-model="query_model_name" class="form-select">
+                    </select>
+                </div>
+            </div>
+            <div class="col-1">
+                <button id="button_search" v-on:click="search" class="btn btn-outline-primary form-control">送信</button>
+            </div>
+            <div class="col-1">
+                <button id="button_share" class="btn btn-outline-primary form-control">
+                    <span class="bi bi-link-45deg"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="info">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Sentence</th>
+                        <th></th>
+                        <th>
+                            SCUD
+                            <button id="button_scud" style="margin-left:1em;" class="btn btn-sm btn-outline-primary">
+                                <span class="bi bi-clipboard"></span>
+                            </button>
+                            <button id="button_all" style="float:right;" class="btn btn-sm btn-outline-primary">
+                                <span class="bi bi-clipboard-data"></span>
+                            </button>
+                        </th>
+                        <th>Score</th>
+                        <th style="width: 10em;">Score detail</th>
+                        <th>Original rank</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <template v-for="(sentence, idx0) in resp.sentences">
+                        <template v-for="n in resp.info.param.nbest" :key="n">
+                            <tr v-for="(scud, idx1) in resp.scuds[resp.info.param.nbest*idx0 +n-1]" v-bind:class="{'table-success':n==1}">
+                                <td>
+                                    <template v-if="n==1 && idx1==0">
+                                        {{ sentence }}
+                                    </template>
+                                </td>
+                                <td v-if="idx1 == 0" :rowspan="resp.scuds[resp.info.param.nbest*idx0 +n-1].length" style="width:2em; vertical-align:middle;">
+                                    <template v-if="resp.info.param.nbest!=1">
+                                        {{n}}
+                                    </template>
+                                </td>
+                                <td>
+                                    {{scud}}
+                                </td>
+                                <td v-if="resp.scores && idx1 == 0" :rowspan="resp.scuds[resp.info.param.nbest*idx0 +n-1].length" style="width:5em; vertical-align:middle;">
+                                    {{ resp.scores[resp.info.param.nbest*idx0 +n-1].toFixed(3) }}
+                                    <div class="step-background">
+                                        <div :class="['step-score', scud=='<none>' ? 'step-score-bg-none' : 'step-score-bg-normal' ]" :style="('width: ' + resp.scores[resp.info.param.nbest*idx0 +n-1]*100 + '%')"></div>
+                                    </div>
+                                </td>
+                                <td v-if="resp.scores && idx1 == 0" :rowspan="resp.scuds[resp.info.param.nbest*idx0 +n-1].length" class="score_detail">
+                                    <div v-for="(sv, sk) in resp.scores_detail[resp.info.param.nbest*idx0 +n-1]">
+                                        {{sk}}: {{sv.toFixed(3)}}
+                                        <br>
+                                        <div :class="['step-score', scud=='<none>' ? 'step-score-bg-none' : 'step-score-bg-normal' ]" :style="('width: ' + sv*100 + '%')"></div>
+                                    </div>
+                                </td>
+                                <td v-if="idx1 == 0" :rowspan="resp.scuds[resp.info.param.nbest*idx0 +n-1].length" style="width:2em; vertical-align:middle;">
+                                    {{ resp.original_ranks[resp.info.param.nbest*idx0 +n-1] }}
+                                </td>
+                            </tr>
+                        </template>
+                    </template>
+
+                </tbody>
+            </table>
+
+            <div style="float:right;">
+                {{elapsed_time.toFixed(2)}} 秒
+                <br>
+                ({{resp.model_name}})
+            </div>
+
+            <table class="table table-striped table-hover text" v-if="query">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>Text</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(ctx, idx) in query.context" v-bind:class="{'table-primary':ctx.name=='user', 'table-danger':ctx.name=='agent'}">
+                        <td>{{ ctx.name }} </td>
+                        <td>{{ ctx.text }} </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h2>JSON</h2>
+            <div class="text-danger" v-if="error">
+                Error!
+            </div>
+
+            <div id="jsondump">
+                <pre class="pre-scrollable text-dark" v-bind:class="{'bg-danger': error, 'bg-light':!error}">{{ JSON.stringify(resp, null, 2) }}</pre>
+
+                <pre class="pre-scrollable bg-light text-dark">{{ JSON.stringify(query, null, 2) }}</pre>
+            </div>
+        </div>
+
+        <div id="loader" class="loader" style="display:none;">Loading...</div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js" integrity="sha256-kXTEJcRFN330VirZFl6gj9+UM6gIKW195fYZeR3xDhc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js" integrity="sha256-43O3ClFnSFxzomVCG8/NH93brknJxRYF5tKRij3krg0=" crossorigin="anonymous"></script>
+    <script src="static/lz-string.min.js"></script>
+    <script src="static/app.js"></script>
+</body>
+
+</html>

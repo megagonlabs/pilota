@@ -1,0 +1,42 @@
+#title {
+    display: inline;
+
+}
+
+#title>a {
+    text-decoration: none;
+}
+
+.wem {
+    width: 7em;
+}
+
+
+.text {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/*https://devsakaso.com/vue-js-score-bar/*/
+.step-background {
+    background: #dcdcdc;
+}
+
+.step-score {
+    display: flex;
+    width: 100%;
+    height: 5px;
+    transition: 0.5s;
+}
+
+.step-score-bg-normal {
+    background-color: #00416a;
+}
+
+.step-score-bg-none {
+    background-color: #ff0000;
+}
+
+.score_detail {
+    font-size: 20%;
+}

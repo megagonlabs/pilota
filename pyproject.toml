@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "pilota"
+version = "2.10.1"
+description = ""
+authors = ["Yuta Hayashibe <yuta@megagon.ai>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+transformers = ">=4.30"
+more-itertools = ">=8.6.0"
+sentencepiece = ">=0.1.95"
+pydantic = ">=1.8.2"
+bunkai = ">=1.5.5"
+asdc = {git = "https://github.com/megagonlabs/asdc", rev = "v4.8.2"}
+protobuf = ">=3.20.2,<4" # To fix CVE-2022-1941
+fugashi = "^1.2.1" # for LINE-DistilBERT-Japanese
+unidic-lite = "^1.0.8" # for LINE-DistilBERT-Japanese
+torch = ">=2.0.0, !=2.0.1" # https://github.com/pytorch/pytorch/issues/100974
+numpy = "^1.25.0"
+huggingface-hub = ">=0.15.1"
+pytorch-lightning = {version = "^2.0.2", extras = ["extra"], optional = true}
+fairseq = {version = "^0.12.2", optional = true}
+sumeval = {version = ">=0.2.2", optional = true}
+fastapi = {version = ">=0.65.1", optional = true}
+uvicorn = {version = ">=0.13.4", optional = true}
+
+[tool.poetry.group.dev.dependencies]
+coverage = ">=5.3"
+flake8 = ">=3.8.4"
+isort = ">=5.6.4"
+yamllint = ">=1.25.0"
+pydocstyle = ">=5.1.1"
+black = ">=21.10b0"
+toml = ">=0.10.2"
+cffconvert = "^2.0.0"
+
+[tool.poetry.extras]
+train = ["pytorch-lightning", "sumeval", "fairseq"]
+web = ["fastapi", "uvicorn"]
+
+[build-system]
+requires = ["poetry-core>=1.2.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+pilota = "pilota.cli:main"
+
+[tool.pyright]
+pythonVersion = "3.9"
+typeCheckingMode = "basic"
+reportUnusedVariable = "warning"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
