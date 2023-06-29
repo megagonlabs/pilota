@@ -20,7 +20,7 @@
 ### Install
 
 ```bash
-pip install -U git+https://github.com/megagonlabs/pilota@v1.0.0
+pip install -U git+https://github.com/megagonlabs/pilota@main
 ```
 
 If you need compatible torch for your GPU, please install the specific package like the following step.
