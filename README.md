@@ -41,7 +41,7 @@ $ echo -e 'ご要望をお知らせください\tはい。部屋から富士山�
 {"context": [{"name": "agent", "text": "こんにちは"}], "utterance": "はい、こんにちは", "sentences": null, "meta": {}}
 ```
 
-Then, feet it to Pilota.
+Then, feed it to Pilota.
 
 ```console
 $ pilota -m megagonlabs/pilota_dialog --batch_size 1 --outlen 60 --nbest 1 --beam 5 < input.jsonl
