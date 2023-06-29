@@ -41,15 +41,19 @@ $ echo -e 'ご要望をお知らせください\tはい。部屋から富士山�
 {"context": [{"name": "agent", "text": "こんにちは"}], "utterance": "はい、こんにちは", "sentences": null, "meta": {}}
 ```
 
-Designate a model on <https://huggingface.co/megagonlabs/> like this.
+Then, feet it to Pilota.
+
+```console
+$ pilota -m megagonlabs/pilota_dialog --batch_size 1 --outlen 60 --nbest 1 --beam 5 < input.jsonl
+[{"scuds_nbest": [[]], "original_ranks": [0], "scores": [0.9911208689212798], "scores_detail": [{"OK": 0.9704028964042664, "incorrect_none": 0.04205145686864853, "lack": 0.0007874675211496651, "limited": 0.0003119863977190107, "non_fluent": 0.0002362923405598849, "untruth": 0.0013080810895189643}], "sentence": "はい。"}, {"scuds_nbest": [["部屋から富士山が見えるホテルが良い。", "夜景を見ながら食事のできるホテルが良い。"]], "original_ranks": [0], "scores": [0.9952289938926696], "scores_detail": [{"OK": 0.9840966463088989, "incorrect_none": 0.010280555114150047, "lack": 0.0032871251460164785, "limited": 0.00041511686868034303, "non_fluent": 0.0002954243100248277, "untruth": 0.003289491171017289}], "sentence": "部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。"}]
+[{"scuds_nbest": [["こんにちは。"]], "original_ranks": [0], "scores": [0.9729190051555633], "scores_detail": [{"OK": 0.9704028964042664, "incorrect_none": 0.04205145686864853, "lack": 0.0007874675211496651, "limited": 0.0003119863977190107, "non_fluent": 0.0002362923405598849, "untruth": 0.0013080810895189643}], "sentence": "はい、こんにちは"}]
+```
+
+Models are available on <https://huggingface.co/megagonlabs/>.
 
 - [megagonlabs/pilota_dialog](https://huggingface.co/megagonlabs/pilota_dialog)
 - [megagonlabs/pilota_scud2query](https://huggingface.co/megagonlabs/pilota_scud2query)
 - [megagonlabs/pilota_hotel_review](https://huggingface.co/megagonlabs/pilota_hotel_review)
-
-```bash
-pilota -m megagonlabs/pilota_dialog --batch_size 1 --ol 60 < input.jsonl
-```
 
 You can designate other local models.
 
