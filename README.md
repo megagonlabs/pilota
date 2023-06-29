@@ -2,12 +2,8 @@
 # Pilota: SCUD generator
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
 [![CI](https://github.com/megagonlabs/pilota/actions/workflows/ci.yml/badge.svg)](https://github.com/megagonlabs/pilota/actions/workflows/ci.yml)
 [![Typos](https://github.com/megagonlabs/pilota/actions/workflows/typos.yml/badge.svg)](https://github.com/megagonlabs/pilota/actions/workflows/typos.yml)
-[![markdownlint](https://img.shields.io/badge/markdown-lint-lightgrey)](https://github.com/markdownlint/markdownlint)
-[![jsonlint](https://img.shields.io/badge/json-lint-lightgrey)](https://github.com/dmeranda/demjson)
-[![yamllint](https://img.shields.io/badge/yaml-lint-lightgrey)](https://github.com/adrienverge/yamllint)
 
 | Name | Utterance | SCUD |
 | --- | --- | --- |
