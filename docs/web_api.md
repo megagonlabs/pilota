@@ -4,7 +4,7 @@
 You need an additional package `web`.
 
 ```bash
-pip install -U 'git+https://github.com/megagonlabs/pilota@main#egg=pilota[web]'
+pip install -U 'git+https://github.com/megagonlabs/pilota@main#[web]'
 ```
 
 ## Start a server

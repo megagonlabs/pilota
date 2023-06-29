@@ -3,7 +3,7 @@
 You need an additional package `train`.
 
 ```bash
-pip install -U 'git+https://github.com/megagonlabs/pilota@main#egg=pilota[train]'
+pip install -U 'git+https://github.com/megagonlabs/pilota@main#[train]'
 ```
 
 ## Training for dialogs
