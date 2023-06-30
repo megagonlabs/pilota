@@ -1463,13 +1463,13 @@ files = [
 
 [[package]]
 name = "lightning-utilities"
-version = "0.8.0"
+version = "0.9.0"
 description = "PyTorch Lightning Sample project."
 optional = true
 python-versions = ">=3.7"
 files = [
-    {file = "lightning-utilities-0.8.0.tar.gz", hash = "sha256:8e5d95c7c57f026cdfed7c154303e88c93a7a5e868c9944cb02cf71f1db29720"},
-    {file = "lightning_utilities-0.8.0-py3-none-any.whl", hash = "sha256:22aa107b51c8f50ccef54d08885eb370903eb04148cddb2891b9c65c59de2a6e"},
+    {file = "lightning-utilities-0.9.0.tar.gz", hash = "sha256:efbf2c488c257f942abdfd06cf646fb84ca215a9663b60081811e22a15ee033b"},
+    {file = "lightning_utilities-0.9.0-py3-none-any.whl", hash = "sha256:918dd90c775719e3855631db6282ad75c14da4c5727c4cebdd1589d865fad03d"},
 ]
 
 [package.dependencies]
@@ -1478,8 +1478,7 @@ typing-extensions = "*"
 
 [package.extras]
 cli = ["fire"]
-docs = ["sphinx (>=4.0,<5.0)"]
-test = ["coverage (==6.5.0)"]
+docs = ["requests (>=2.0.0)"]
 typing = ["mypy (>=1.0.0)"]
 
 [[package]]
