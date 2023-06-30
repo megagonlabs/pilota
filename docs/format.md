@@ -83,7 +83,8 @@ You can get input JSON-lines from a TSV (Tab-Separated Values) format file by us
 ## Output format: ``list`` of ``pilota.schema.ResultForSentence``
 
 - ``sentence``: The target sentence for SCUD generation
-- ``scuds_nbest``:  N-best of SCUDS
+- ``scuds_nbest``: N-best of SCUDS
+- ``original_ranks``: Original rank before re-ranking by scorer of each N-best
 - ``scores``: Score of each candidate of N-best
 - ``scores_detail``: Detail scores of each candidate of N-best
 
