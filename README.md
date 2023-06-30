@@ -77,12 +77,9 @@ pilota -m /path/to/model --batch_size 1 --ol 60 < input.jsonl
 
 Check other options by ``pilota -h``.
 
-### Input format
-
-- JSON-lines of [``pilota.schema.Request``](https://github.com/megagonlabs/pilota/blob/master/pilota/schema.py)
-
 ## [Documents](docs)
 
+- [Format](docs/format.md)
 - [Web API server](docs/web_api.md)
 - [Training](docs/training.md)
 
