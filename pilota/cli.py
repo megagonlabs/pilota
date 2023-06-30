@@ -9,9 +9,9 @@ from typing import Optional
 
 import torch
 from bunkai import Bunkai
-from huggingface_hub import snapshot_download
 
 from pilota.predict import Predictor, PredictorParameter, ResultForSentence
+from pilota.util import get_real_model_path
 
 logger = getLogger(__name__)
 
@@ -56,16 +56,7 @@ def operation(
     if not raw_in:
         bki = Bunkai(path_model=None)
 
-    path_model: Path
-    if path_model_str.startswith("megagonlabs/"):
-        path_model = Path(
-            snapshot_download(
-                repo_id=path_model_str,
-            )
-        )
-    else:
-        path_model = Path(path_model_str)
-
+    path_model: Path = get_real_model_path(path_model_str)
     logger.info(f"Loading {path_model}")
     predictor = Predictor(
         path_model=path_model,

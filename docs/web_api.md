@@ -13,14 +13,13 @@ pip install -U 'pilota[web] @ git+https://github.com/megagonlabs/pilota'
 # Optional: If you use dynamic model update, set ADMIN_KEY to the environment variable
 export ADMIN_KEY=$(uuidgen |tee /dev/stderr)
 
-# Run
+# Example: You can use multiple models
 python3 -m pilota.web.cli \
-    --name my_model_name \
-    --model /path/to/model \
-    --name my_model_name2 \
-    --model /path/to/model2 \
-    --port 7001 \
-    --root_path /app/pilota
+    --name model_dialog \
+    --model megagonlabs/pilota_dialog \
+    --name model_scud2query  \
+    --model megagonlabs/pilota_scud2query \
+    --port 7001
 ```
 
 - You can use several models

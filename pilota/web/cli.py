@@ -7,7 +7,7 @@ def get_opts() -> argparse.Namespace:
     default_static = Path(__file__).parent.joinpath("static")
 
     oparser = argparse.ArgumentParser()
-    oparser.add_argument("--model", action="append", type=Path, required=True)
+    oparser.add_argument("--model", action="append", required=True)
     oparser.add_argument("--name", action="append")
     oparser.add_argument("--static", type=Path, default=default_static)
 

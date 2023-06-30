@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import os
 import time
 from pathlib import Path
@@ -12,6 +11,7 @@ from fastapi.staticfiles import StaticFiles
 
 from pilota.predict import DIR_NAME_SCORER, Predictor, PredictorParameter
 from pilota.schema import Request
+from pilota.util import get_real_model_path
 from pilota.web.schema import DEFAULT_STR, BasicInfo, Info, WebRequest, WebRequestAdminModel, WebResponse
 
 
@@ -80,7 +80,7 @@ def _load_a_model(
 
 
 def get_app(
-    path_models: list[Path],
+    path_models: list[str],
     names: list[str],
     dohalf: bool,
     static_path: Path,
@@ -103,7 +103,8 @@ def get_app(
         default_param=default_predictor_param,
         default_name=None,
     )
-    for _p, _name in zip(path_models, names):
+    real_path_models: list[Path] = [get_real_model_path(p) for p in path_models]
+    for _p, _name in zip(real_path_models, names):
         ret: Optional[JSONResponse] = _load_a_model(
             request=WebRequestAdminModel(
                 model_name=_name,
