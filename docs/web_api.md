@@ -4,7 +4,7 @@
 You need an additional package `web`.
 
 ```bash
-pip install -U 'git+https://github.com/megagonlabs/pilota@main#[web]'
+pip install -U 'pilota[web] @ git+https://github.com/megagonlabs/pilota'
 ```
 
 ## Start a server
@@ -14,7 +14,7 @@ pip install -U 'git+https://github.com/megagonlabs/pilota@main#[web]'
 export ADMIN_KEY=$(uuidgen |tee /dev/stderr)
 
 # Run
-python3 -m pilota.web \
+python3 -m pilota.web.cli \
     --name my_model_name \
     --model /path/to/model \
     --name my_model_name2 \
