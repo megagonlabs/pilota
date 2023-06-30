@@ -80,10 +80,12 @@ def _load_a_model(
 
 
 def get_app(
+    *,
     path_models: list[str],
     names: list[str],
     dohalf: bool,
     static_path: Path,
+    check_model_update: bool,
 ):
     if len(path_models) != len(names):
         raise IndexError("Length mismatch")
@@ -103,7 +105,13 @@ def get_app(
         default_param=default_predictor_param,
         default_name=None,
     )
-    real_path_models: list[Path] = [get_real_model_path(p) for p in path_models]
+    real_path_models: list[Path] = [
+        get_real_model_path(
+            p,
+            check_model_update=check_model_update,
+        )
+        for p in path_models
+    ]
     for _p, _name in zip(real_path_models, names):
         ret: Optional[JSONResponse] = _load_a_model(
             request=WebRequestAdminModel(

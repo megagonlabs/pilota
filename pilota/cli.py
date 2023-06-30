@@ -33,6 +33,7 @@ def operation(
     print_param: bool,
     queue_max_size: int,
     no_scorer: bool,
+    check_model_update: bool,
 ) -> None:
     if nbest > beam_search:
         sys.stderr.write(f'Changed "beam_search" {beam_search} to {nbest}\n')
@@ -56,7 +57,10 @@ def operation(
     if not raw_in:
         bki = Bunkai(path_model=None)
 
-    path_model: Path = get_real_model_path(path_model_str)
+    path_model: Path = get_real_model_path(
+        path_model_str,
+        check_model_update=check_model_update,
+    )
     logger.info(f"Loading {path_model}")
     predictor = Predictor(
         path_model=path_model,
@@ -91,6 +95,7 @@ def get_opts() -> argparse.ArgumentParser:
     oparser.add_argument("--input", "-i", type=Path, default="/dev/stdin", required=False)
     oparser.add_argument("--output", "-o", type=Path, default="/dev/stdout", required=False)
     oparser.add_argument("--model", "-m", required=True)
+    oparser.add_argument("--check_model_update", action="store_true")
     oparser.add_argument("--bs", "--batch_size", type=int, default=dpp.batch_size)
     oparser.add_argument("--il", "--inlen", type=int, default=dpp.in_max_length, help="0 means unlimited")
     oparser.add_argument("--ol", "--outlen", type=int, required=True)
@@ -131,6 +136,7 @@ def main() -> None:
         print_param=opts.print_param,
         queue_max_size=opts.queue,
         no_scorer=opts.no_scorer,
+        check_model_update=opts.check_model_update,
     )
 
 

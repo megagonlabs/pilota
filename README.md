@@ -63,6 +63,9 @@ Models are available on <https://huggingface.co/megagonlabs/>.
 - [megagonlabs/pilota_scud2query](https://huggingface.co/megagonlabs/pilota_scud2query)
 - [megagonlabs/pilota_hotel_review](https://huggingface.co/megagonlabs/pilota_hotel_review)
 
+Once downloaded, the model will not be downloaded again.
+If you cancel the download of a model halfway through the first start-up, or if you need to update it to the latest version, please run with ``--check_model_update``.
+
 You can check local path of downloaded models.
 
 ```bash

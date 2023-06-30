@@ -8,6 +8,7 @@ def get_opts() -> argparse.Namespace:
 
     oparser = argparse.ArgumentParser()
     oparser.add_argument("--model", action="append", required=True)
+    oparser.add_argument("--check_model_update", action="store_true")
     oparser.add_argument("--name", action="append")
     oparser.add_argument("--static", type=Path, default=default_static)
 
@@ -32,10 +33,11 @@ def main():
 
     opts = get_opts()
     app = get_app(
-        opts.model,
-        opts.name,
-        opts.dohalf,
-        opts.static,
+        path_models=opts.model,
+        names=opts.name,
+        dohalf=opts.dohalf,
+        static_path=opts.static,
+        check_model_update=opts.check_model_update,
     )
     uvicorn.run(
         app,  # type: ignore
