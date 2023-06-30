@@ -29,6 +29,7 @@ python3 -m pilota.web.cli \
 ## How to use
 
 - Browser interface:  <http://0.0.0.0:7001/>
+    - Web API usage:  <http://0.0.0.0:7001/docs>
 - All inputs will be NFKC normalized
 - For sentences in an utterance
 
