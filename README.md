@@ -51,7 +51,13 @@ Models are available on <https://huggingface.co/megagonlabs/>.
 - [megagonlabs/pilota_scud2query](https://huggingface.co/megagonlabs/pilota_scud2query)
 - [megagonlabs/pilota_hotel_review](https://huggingface.co/megagonlabs/pilota_hotel_review)
 
-You can designate other local models.
+You can check local path of downloaded models.
+
+```bash
+huggingface-cli scan-cache | grep ^megagonlabs
+```
+
+`-m` option also accepts paths of local models.
 
 ```bash
 pilota -m /path/to/model --batch_size 1 --ol 60 < input.jsonl
