@@ -28,22 +28,34 @@ pip install -U torch --extra-index-url https://download.pytorch.org/whl/cu118
 
 ### Run
 
-Prepare inputs.
+1. Prepare inputs
+    - Command
 
-```console
-$ echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tはい、こんにちは' \
-    | python -m pilota.convert.plain2request | tee input.jsonl
-{"context": [{"name": "agent", "text": "ご要望をお知らせください"}], "utterance": "はい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。", "sentences": null, "meta": {}}
-{"context": [{"name": "agent", "text": "こんにちは"}], "utterance": "はい、こんにちは", "sentences": null, "meta": {}}
-```
+        ```bash
+        echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tはい、こんにちは' \
+            | python -m pilota.convert.plain2request | tee input.jsonl
+        ```
 
-Then, feed it to Pilota.
+    - Output
 
-```console
-$ pilota -m megagonlabs/pilota_dialog --batch_size 1 --outlen 60 --nbest 1 --beam 5 < input.jsonl
-[{"scuds_nbest": [[]], "original_ranks": [0], "scores": [0.9911208689212798], "scores_detail": [{"OK": 0.9704028964042664, "incorrect_none": 0.04205145686864853, "lack": 0.0007874675211496651, "limited": 0.0003119863977190107, "non_fluent": 0.0002362923405598849, "untruth": 0.0013080810895189643}], "sentence": "はい。"}, {"scuds_nbest": [["部屋から富士山が見えるホテルが良い。", "夜景を見ながら食事のできるホテルが良い。"]], "original_ranks": [0], "scores": [0.9952289938926696], "scores_detail": [{"OK": 0.9840966463088989, "incorrect_none": 0.010280555114150047, "lack": 0.0032871251460164785, "limited": 0.00041511686868034303, "non_fluent": 0.0002954243100248277, "untruth": 0.003289491171017289}], "sentence": "部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。"}]
-[{"scuds_nbest": [["こんにちは。"]], "original_ranks": [0], "scores": [0.9729190051555633], "scores_detail": [{"OK": 0.9704028964042664, "incorrect_none": 0.04205145686864853, "lack": 0.0007874675211496651, "limited": 0.0003119863977190107, "non_fluent": 0.0002362923405598849, "untruth": 0.0013080810895189643}], "sentence": "はい、こんにちは"}]
-```
+        ```jsonl
+        {"context": [{"name": "agent", "text": "ご要望をお知らせください"}], "utterance": "はい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。", "sentences": null, "meta": {}}
+        {"context": [{"name": "agent", "text": "こんにちは"}], "utterance": "はい、こんにちは", "sentences": null, "meta": {}}
+        ```
+
+2. feed it to Pilota
+    - Command
+
+        ```console
+        pilota -m megagonlabs/pilota_dialog --batch_size 1 --outlen 60 --nbest 1 --beam 5 < input.jsonl
+        ```
+
+    - Output
+
+        ```jsonl
+        [{"scuds_nbest": [[]], "original_ranks": [0], "scores": [0.9911208689212798], "scores_detail": [{"OK": 0.9704028964042664, "incorrect_none": 0.04205145686864853, "lack": 0.0007874675211496651, "limited": 0.0003119863977190107, "non_fluent": 0.0002362923405598849, "untruth": 0.0013080810895189643}], "sentence": "はい。"}, {"scuds_nbest": [["部屋から富士山が見えるホテルが良い。", "夜景を見ながら食事のできるホテルが良い。"]], "original_ranks": [0], "scores": [0.9952289938926696], "scores_detail": [{"OK": 0.9840966463088989, "incorrect_none": 0.010280555114150047, "lack": 0.0032871251460164785, "limited": 0.00041511686868034303, "non_fluent": 0.0002954243100248277, "untruth": 0.003289491171017289}], "sentence": "部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。"}]
+        [{"scuds_nbest": [["こんにちは。"]], "original_ranks": [0], "scores": [0.9729190051555633], "scores_detail": [{"OK": 0.9704028964042664, "incorrect_none": 0.04205145686864853, "lack": 0.0007874675211496651, "limited": 0.0003119863977190107, "non_fluent": 0.0002362923405598849, "untruth": 0.0013080810895189643}], "sentence": "はい、こんにちは"}]
+        ```
 
 Models are available on <https://huggingface.co/megagonlabs/>.
 
