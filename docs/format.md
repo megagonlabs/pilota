@@ -11,6 +11,22 @@ Inputs and outputs of Pilota are JSON-lines of those classes.
 - ``context`` can be ``null``
 - ``utterance`` and ``sentences`` must be ``null`` on one side and have a value on the other
 
+### Conversion from TSV
+
+You can get input JSON-lines from a TSV (Tab-Separated Values) format file by using ``python -m pilota.convert.plain2request``
+
+- Dialog
+
+    ```tsv
+    ご要望をお知らせください[TAB]はい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。
+    ```
+
+- Review (no tabs; single column)
+
+    ```tsv
+    お正月に泊まりました。夜景が綺麗でした。
+    ```
+
 ### Examples of input
 
 - Context and utterance
