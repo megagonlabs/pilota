@@ -5,7 +5,7 @@
 [![CI](https://github.com/megagonlabs/pilota/actions/workflows/ci.yml/badge.svg)](https://github.com/megagonlabs/pilota/actions/workflows/ci.yml)
 [![Typos](https://github.com/megagonlabs/pilota/actions/workflows/typos.yml/badge.svg)](https://github.com/megagonlabs/pilota/actions/workflows/typos.yml)
 
-| Name | Utterance | SCUD |
+| Name | Input Utterance | Output SCUD |
 | --- | --- | --- |
 | Agent | ご要望をお知らせください | - |
 | User | はい。 | (none) |
