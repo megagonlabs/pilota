@@ -70,7 +70,7 @@ You can get input JSON-lines from a TSV (Tab-Separated Values) format file by us
     }
   ```
 
-- No context and review text
+- Review text. ``context`` should be ``null``.
 
   ```json
     {
