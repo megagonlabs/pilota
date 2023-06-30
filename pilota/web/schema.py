@@ -13,7 +13,7 @@ DEFAULT_STR: str = "default"
 
 
 class BasicInfo(BaseModel):
-    packages: dict[str, str]
+    packages: dict[str, Optional[str]]
     param: PredictorParameter
 
 
@@ -41,7 +41,7 @@ class Info(BasicInfo):
         default_param: PredictorParameter,
         default_name: Optional[str],
     ) -> "Info":
-        _pks = {}
+        _pks: dict[str, Optional[str]] = {}
         for libname in ["pytorch-lightning", "transformers"]:
             try:
                 _pks[libname] = pkg_resources.get_distribution(libname).version
