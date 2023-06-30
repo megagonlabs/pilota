@@ -42,3 +42,16 @@ class PilotaConfig(BaseModel):
 
 class ScorerConfig(BaseModel):
     context_separator: str
+
+
+Results = list[str]
+NBestResult = list[Results]
+NBestResults = list[NBestResult]  # NBestResults[nbest][sent_idx]
+
+
+class ResultForSentence(BaseModel):
+    scuds_nbest: NBestResult
+    original_ranks: list[int]
+    scores: Optional[list[float]]
+    scores_detail: Optional[list[dict[str, float]]]
+    sentence: str

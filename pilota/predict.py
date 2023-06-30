@@ -21,7 +21,7 @@ from transformers.tokenization_utils import PreTrainedTokenizer
 
 import pilota.const.metachar
 from pilota.const.metachar import MARK_AGENT, MARK_CONTEXT, MARK_USER, SEP, TARGET_END, TARGET_START
-from pilota.schema import PilotaConfig, Request
+from pilota.schema import NBestResults, PilotaConfig, Request, ResultForSentence
 from pilota.scorer import Scorer
 
 logger = getLogger(__name__)
@@ -29,6 +29,20 @@ CONFIG_FILE_NAME: Final[str] = "pilota.config.json"
 
 DIR_NAME_SCORER: Final[str] = "scorer"
 DIR_NAME_SCUD: Final[str] = "scud"
+
+
+WrapDecodeReturnType = tuple[
+    list[list[str]],
+    list[str],
+    list[str],
+    Optional[list[float]],
+    Optional[list[dict[str, float]]],
+    list[bool],
+    int,
+    bool,
+    list[int],
+    bool,
+]
 
 
 class PredictorParameter(BaseModel):
@@ -50,31 +64,6 @@ class PredictorParameter(BaseModel):
     top_k: int = Field(default=50, ge=1)
     top_p: float = Field(default=1.0, ge=0.0, le=1.0)
     typical_p: float = Field(default=1.0, ge=0.0, le=1.0)
-
-
-WrapDecodeReturnType = tuple[
-    list[list[str]],
-    list[str],
-    list[str],
-    Optional[list[float]],
-    Optional[list[dict[str, float]]],
-    list[bool],
-    int,
-    bool,
-    list[int],
-    bool,
-]
-
-Results = list[str]
-NBestResults = list[list[Results]]  # NBestResults[nbest][sent_idx]
-
-
-class ResultForSentence(BaseModel):
-    scuds_nbest: list[Results]
-    original_ranks: list[int]
-    scores: Optional[list[float]]
-    scores_detail: Optional[list[dict[str, float]]]
-    sentence: str
 
 
 class Predictor:
