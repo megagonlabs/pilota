@@ -16,7 +16,7 @@
 ### Install
 
 ```bash
-pip install -U 'pilota[ja_line] @ git+https://github.com/megagonlabs/pilota'
+pip install -U 'pilota[ja-line] @ git+https://github.com/megagonlabs/pilota'
 ```
 
 If you need compatible torch for your GPU, please install the specific package like the following step.
