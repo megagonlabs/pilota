@@ -32,7 +32,7 @@ pip install -U torch --extra-index-url https://download.pytorch.org/whl/cu118
     - Command
 
         ```bash
-        echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tこんにちは' | poetry run python -m pilota.convert.plain2request | tee input.jsonl
+        echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tこんにちは' | python -m pilota.convert.plain2request | tee input.jsonl
         ```
 
     - Output
