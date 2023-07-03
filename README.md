@@ -32,8 +32,7 @@ pip install -U torch --extra-index-url https://download.pytorch.org/whl/cu118
     - Command
 
         ```bash
-        echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tはい、こんにちは' \
-            | python -m pilota.convert.plain2request | tee input.jsonl
+        $  echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tこんにちは' | poetry run python -m pilota.convert.plain2request | tee input.jsonl
         ```
 
     - Output
@@ -54,7 +53,7 @@ pip install -U torch --extra-index-url https://download.pytorch.org/whl/cu118
 
         ```jsonl
         [{"scuds_nbest": [[]], "original_ranks": [0], "scores": [0.9911208689212798], "scores_detail": [{"OK": 0.9704028964042664, "incorrect_none": 0.04205145686864853, "lack": 0.0007874675211496651, "limited": 0.0003119863977190107, "non_fluent": 0.0002362923405598849, "untruth": 0.0013080810895189643}], "sentence": "はい。"}, {"scuds_nbest": [["部屋から富士山が見えるホテルが良い。", "夜景を見ながら食事のできるホテルが良い。"]], "original_ranks": [0], "scores": [0.9952289938926696], "scores_detail": [{"OK": 0.9840966463088989, "incorrect_none": 0.010280555114150047, "lack": 0.0032871251460164785, "limited": 0.00041511686868034303, "non_fluent": 0.0002954243100248277, "untruth": 0.003289491171017289}], "sentence": "部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。"}]
-        [{"scuds_nbest": [[]], "original_ranks": [0], "scores": [0.9831213414669036], "scores_detail": [{"OK": 0.9707014560699463, "incorrect_none": 0.04349137842655182, "lack": 0.0007595761562697589, "limited": 0.00031746397144161165, "non_fluent": 0.00024337830836884677, "untruth": 0.0012659047497436404}], "sentence": "こんにちは"}]
+        [{"scuds_nbest": [[]], "original_ranks": [0], "scores": [0.9831213414669036], "scores_detail": [{"OK": 0.9704028964042664, "incorrect_none": 0.04205145686864853, "lack": 0.0007874675211496651, "limited": 0.0003119863977190107, "non_fluent": 0.0002362923405598849, "untruth": 0.0013080810895189643}], "sentence": "こんにちは"}]
         ```
 
 Models are available on <https://huggingface.co/megagonlabs/>.
