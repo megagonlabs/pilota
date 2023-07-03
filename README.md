@@ -68,11 +68,11 @@ Check other options by ``pilota -h``.
 
 Models are available on <https://huggingface.co/megagonlabs/>.
 
-| Model | Excepted input | Output |
-| --- | --- | --- |
-| [megagonlabs/pilota_dialog](https://huggingface.co/megagonlabs/pilota_dialog) | Dialogue between a user looking for accommodation and an agent. The SCUD generation target is the user's last utterance. | SCUDs |
-| [megagonlabs/pilota_scud2query](https://huggingface.co/megagonlabs/pilota_scud2query) | Users's SCUDs | Queries for accommodation search |
-| [megagonlabs/pilota_hotel_review](https://huggingface.co/megagonlabs/pilota_hotel_review) | Reviews of accommodations | SCUDs |
+| Model | Input Context | Input Utterance | Output |
+| --- | --- | --- | --- |
+| [megagonlabs/pilota_dialog](https://huggingface.co/megagonlabs/pilota_dialog) | Dialogue between a user looking for accommodation and an agent | User's last utterance | SCUDs |
+| [megagonlabs/pilota_scud2query](https://huggingface.co/megagonlabs/pilota_scud2query) | (Not required) | Users's SCUDs | Queries for accommodation search |
+| [megagonlabs/pilota_hotel_review](https://huggingface.co/megagonlabs/pilota_hotel_review) | (Not required) | Text of an accommodation review | SCUDs |
 
 Once downloaded, the model will not be downloaded again.
 If you cancel the download of a model halfway through the first start-up, or if you need to update it to the latest version, please run with ``--check_model_update``.
