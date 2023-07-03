@@ -28,11 +28,11 @@ pip install -U torch --extra-index-url https://download.pytorch.org/whl/cu118
 
 ### Run
 
-1. Prepare inputs
+1. Prepare inputs ([Input Format](docs/format.md) and [plain2request](docs/plain2request.md))
     - Command
 
         ```bash
-        $  echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tこんにちは' | poetry run python -m pilota.convert.plain2request | tee input.jsonl
+        echo -e 'ご要望をお知らせください\tはい。部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。\nこんにちは\tこんにちは' | poetry run python -m pilota.convert.plain2request | tee input.jsonl
         ```
 
     - Output
@@ -42,7 +42,7 @@ pip install -U torch --extra-index-url https://download.pytorch.org/whl/cu118
         {"context": [{"name": "agent", "text": "こんにちは"}], "utterance": "こんにちは", "sentences": null, "meta": {}}
         ```
 
-2. feed it to Pilota
+2. Feed it to Pilota
     - Command
 
         ```console
@@ -82,6 +82,7 @@ Check other options by ``pilota -h``.
 ## [Documents](docs)
 
 - [Format](docs/format.md)
+- [plain2request](docs/plain2request.md)
 - [Web API server](docs/web_api.md)
 - [Training](docs/training.md)
 
