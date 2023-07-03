@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
-
 from typing import Optional
 
 import pkg_resources
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, ConfigDict, validator
 
 from pilota.predict import PredictorParameter
 from pilota.schema import PilotaConfig, Request
@@ -59,12 +58,16 @@ class Info(BasicInfo):
 
 
 class WebRequest(Request):
+    model_config = ConfigDict(protected_namespaces=())  # https://github.com/pydantic/pydantic/issues/6322
+
     param: Optional[PredictorParameter] = None
     model_name: str = DEFAULT_STR
     only_best: bool = True
 
 
 class WebResponse(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())
+
     scuds: list[list[str]]
     original_ranks: Optional[list[int]]
     scores_detail: Optional[list[dict[str, float]]]
@@ -76,6 +79,8 @@ class WebResponse(BaseModel):
 
 
 class WebRequestAdminModel(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())
+
     model_name: Optional[str] = None
     path: Optional[str] = None
     new_default: Optional[str] = None
