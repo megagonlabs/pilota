@@ -56,11 +56,23 @@ pip install -U torch --extra-index-url https://download.pytorch.org/whl/cu118
         [{"scuds_nbest": [[]], "original_ranks": [0], "scores": [0.9831213414669036], "scores_detail": [{"OK": 0.9704028964042664, "incorrect_none": 0.04205145686864853, "lack": 0.0007874675211496651, "limited": 0.0003119863977190107, "non_fluent": 0.0002362923405598849, "untruth": 0.0013080810895189643}], "sentence": "こんにちは"}]
         ```
 
+`-m` option also accepts paths of local models.
+
+```bash
+pilota -m /path/to/model --batch_size 1 --ol 60 < input.jsonl
+```
+
+Check other options by ``pilota -h``.
+
+## Models
+
 Models are available on <https://huggingface.co/megagonlabs/>.
 
-- [megagonlabs/pilota_dialog](https://huggingface.co/megagonlabs/pilota_dialog)
-- [megagonlabs/pilota_scud2query](https://huggingface.co/megagonlabs/pilota_scud2query)
-- [megagonlabs/pilota_hotel_review](https://huggingface.co/megagonlabs/pilota_hotel_review)
+| Model | Excepted input | Output |
+| --- | --- | --- |
+| [megagonlabs/pilota_dialog](https://huggingface.co/megagonlabs/pilota_dialog) | Dialogue between a user looking for accommodation and an agent. The SCUD generation target is the user's last utterance. | SCUDs |
+| [megagonlabs/pilota_scud2query](https://huggingface.co/megagonlabs/pilota_scud2query) | Users's SCUDs | Queries for accommodation search |
+| [megagonlabs/pilota_hotel_review](https://huggingface.co/megagonlabs/pilota_hotel_review) | Reviews of accommodations | SCUDs |
 
 Once downloaded, the model will not be downloaded again.
 If you cancel the download of a model halfway through the first start-up, or if you need to update it to the latest version, please run with ``--check_model_update``.
@@ -70,14 +82,6 @@ You can check local path of downloaded models.
 ```bash
 huggingface-cli scan-cache | grep ^megagonlabs
 ```
-
-`-m` option also accepts paths of local models.
-
-```bash
-pilota -m /path/to/model --batch_size 1 --ol 60 < input.jsonl
-```
-
-Check other options by ``pilota -h``.
 
 ## [Documents](docs)
 
