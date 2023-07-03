@@ -74,3 +74,21 @@ The last column is the target of the SCUD generation.
           "meta": {}
         }
         ```
+
+## ``--sentences`` option
+
+With ``--sentences`` like  ``python -m pilota.convert.plain2request --sentences``, it outputs JSON with ``sentences`` values.
+
+```json
+{
+  "context": [
+    {
+      "name": "agent",
+      "text": "ご要望をお知らせください"
+    }
+  ],
+  "utterance": null,
+  "sentences": ["はい。", "部屋から富士山が見えて、夜景を見ながら食事のできるホテルがいいな。"],
+  "meta": {}
+}
+```
