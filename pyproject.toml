@@ -29,7 +29,7 @@ sumeval = {version = ">=0.2.2", optional = true}
 fairseq = {version = "^0.12.2", optional = true}
 
 # web
-fastapi = {version = ">=0.65.1", optional = true}
+fastapi = {version = ">=0.100.0b2", optional = true}
 uvicorn = {version = ">=0.13.4", optional = true}
 
 

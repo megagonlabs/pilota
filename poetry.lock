@@ -3694,4 +3694,4 @@ web = ["fastapi", "uvicorn"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.12"
-content-hash = "a755731b2d5b8c9ace47114e0d8f65cc5e3b32906d218f16c4a11951b1a95c26"
+content-hash = "40f5dc05631fd2cf5233a8daead3d0e17c0f446a0dd589388a95164b033e30f6"
