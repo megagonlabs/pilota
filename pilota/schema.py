@@ -2,7 +2,7 @@
 
 from typing import Any, Literal, Optional
 
-from pydantic import BaseModel, Field, root_validator
+from pydantic import BaseModel, Field, model_validator
 
 NAME = Literal["user", "agent"]
 
@@ -14,7 +14,7 @@ class Utterance(BaseModel):
     class Config:
         """Config of Utterance"""
 
-        allow_population_by_field_name = True
+        populate_by_name = True
         alias_generator = lambda n: {"name": "speaker"}.get(n, n)  # noqa: E731
 
 
@@ -24,15 +24,15 @@ class Request(BaseModel):
     sentences: Optional[list[str]] = None
     meta: dict[str, Any] = {}
 
-    @root_validator
-    def validate_source(cls, values):
-        if values["utterance"] is None:
-            if values["sentences"] is None:
+    @model_validator(mode="after")
+    def validate_source(self, info):
+        if self.utterance is None:
+            if self.sentences is None:
                 raise ValueError("One of `utterance` or `sentences` must be None and the other must have a value")
         else:
-            if values["sentences"] is not None:
+            if self.sentences is not None:
                 raise ValueError("One of `utterance` or `sentences` must be None and the other must have a value")
-        return values
+        return self
 
 
 class PilotaConfig(BaseModel):

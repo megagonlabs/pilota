@@ -121,7 +121,7 @@ def evaluate_from_file(
 
     with path_out.open("w") as outf:
         for result in evaluate(sids, sources, target_golds, n_2_target_predicteds):
-            outf.write(result.json(sort_keys=True, ensure_ascii=False))
+            outf.write(result.model_dump_json())
             outf.write("\n")
 
 

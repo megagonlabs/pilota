@@ -60,7 +60,7 @@ def operation(
                     utterance=uttr,
                     sentences=None,
                 )
-            outf.write(req.json(ensure_ascii=False))
+            outf.write(req.model_dump_json())
             outf.write("\n")
 
 

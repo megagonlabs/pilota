@@ -25,7 +25,7 @@ def example2scorer_instance(
         },
     )
     if return_req:
-        return req.json(ensure_ascii=False)
+        return req.model_dump_json()
 
     monologue_training = False
     if len(pc.acceptable_names) == 1:  # monologue

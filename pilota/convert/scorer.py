@@ -348,10 +348,8 @@ def main() -> None:
     opts.output.mkdir(exist_ok=True, parents=True)
     with opts.output.joinpath(CONFIG_FILE_NAME).open("w") as outf:
         outf.write(
-            config.json(
-                ensure_ascii=False,
+            config.model_dump_json(
                 indent=4,
-                sort_keys=True,
             )
         )
         outf.write("\n")

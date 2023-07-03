@@ -83,7 +83,7 @@ def operation(
             for i, ret in enumerate(ret_list):
                 if i > 0:
                     outf.write(", ")
-                outf.write(ret.json(ensure_ascii=False))
+                outf.write(ret.model_dump_json())
             outf.write("]\n")
     logger.info("Bye")
 
