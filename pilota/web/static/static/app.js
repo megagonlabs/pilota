@@ -224,7 +224,7 @@ const app = new Vue({
       }
 
       try {
-        const url_info = `${API_PREFIX}/api/info`;
+        const url_info = `${API_PREFIX}api/info`;
         const response = await axios.get(url_info);
         this.resp = Object.assign({}, this.resp, response.data);
         this.query = { url: url_info };
@@ -321,7 +321,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   app.appname = document.getElementById("app").dataset.appname;
   app.url_api = {
-    pilota: `${API_PREFIX}/api/predict`,
+    pilota: `${API_PREFIX}api/predict`,
   }[app.appname];
 
   await app.set_model_names();
