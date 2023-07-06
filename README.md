@@ -100,6 +100,10 @@ huggingface-cli scan-cache | grep ^megagonlabs
     要約付き宿検索対話コーパス．
     言語処理学会第27回年次大会論文集，pp.340-344. 2021. (NLP 2021)
     [[PDF]](https://www.anlp.jp/proceedings/annual_meeting/2021/pdf_dir/P2-5.pdf)
+3. 林部祐太．
+    発話とレビューに対する解釈文生成とトピック分類．
+    言語処理学会第29回年次大会論文集，pp.2013-2017. 2023. (NLP 2023)
+    [\[PDF\]](https://www.anlp.jp/proceedings/annual_meeting/2023/pdf_dir/P8-12.pdf)
 
 ## License
 
