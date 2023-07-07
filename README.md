@@ -70,7 +70,7 @@ Models are available on <https://huggingface.co/megagonlabs/>.
 
 | Model | Input Context | Input Utterance | Output |
 | --- | --- | --- | --- |
-| [megagonlabs/pilota_dialog](https://huggingface.co/megagonlabs/pilota_dialog) | Dialogue between a user looking for accommodation and an agent | User's last utterance | SCUDs |
+| [megagonlabs/pilota_dialog](https://huggingface.co/megagonlabs/pilota_dialog) | Dialog between a user looking for an accommodation and an agent | User's last utterance | SCUDs |
 | [megagonlabs/pilota_scud2query](https://huggingface.co/megagonlabs/pilota_scud2query) | (Not required) | Users' SCUDs | Queries for accommodation search |
 | [megagonlabs/pilota_hotel_review](https://huggingface.co/megagonlabs/pilota_hotel_review) | (Not required) | Text of an accommodation review | SCUDs |
 
