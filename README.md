@@ -14,6 +14,8 @@
 |   | ただ、近くが良いなとは思ってて。 | ホテルはUSJの近くが良い。|
 |   | 景色が良くて食事も美味しいところが良いです | 景色が良いホテルが良い。<br>食事が美味しいホテルが良い。|
 
+<img src="https://user-images.githubusercontent.com/963961/258697612-29769fa0-e86c-4f1c-9f25-55159060e1c6.png" alt="Screenshot of web demo">
+
 ## Quick start
 
 ### Install
