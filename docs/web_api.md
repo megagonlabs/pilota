@@ -19,6 +19,8 @@ python3 -m pilota.web.cli \
     --model megagonlabs/pilota_dialog \
     --name model_scud2query  \
     --model megagonlabs/pilota_scud2query \
+    --name model_hotel_review \
+    --model megagonlabs/pilota_hotel_review \
     --port 7001
 ```
 
