@@ -7,7 +7,7 @@ authors = ["Yuta Hayashibe <yuta@megagon.ai>"]
 [tool.poetry.dependencies]
 python = ">=3.9,<3.12"
 transformers = "^4.31"
-numpy = "^1.25.0"
+numpy = "^1.26.0"
 torch = "^2.0.0, !=2.0.1" # https://github.com/pytorch/pytorch/issues/100974
 huggingface-hub = ">=0.15.1"
 more-itertools = ">=8.6.0"
