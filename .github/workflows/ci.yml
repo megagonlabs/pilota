@@ -35,7 +35,7 @@ jobs:
           poetry run python -c \
           'import transformers;transformers.utils.move_cache()'
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: npm
